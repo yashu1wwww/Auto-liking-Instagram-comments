@@ -1,11 +1,11 @@
 # Auto-liking-Instagram-comments
 Auto liking Instagram comments using selenium with python
 
-Replace "Username" and "Password" in the 22nd and 26th lines, as well as in the 29th line, with the post URL for which you want to retweet and like the comments.
+##Replace "Username" and "Password" in the 14th and 16th lines, as well as in the 20th line, with the post URL for which you want to like the comments.
 
-## Note: Use accounts that do not have two-factor authentication.
+##Note: Use accounts that do not have two-factor authentication.
 
-Download the latest version of Chrome Driver from https://chromedriver.chromium.org/ and extract the file. Place it in the designated folder. Open the command prompt in that particular folder and enter prl.py or double-click on the prl.py file.
+Download the latest version of Chrome Driver from https://chromedriver.chromium.org/ and extract the file. Place it in the designated folder. Open the command prompt in that particular folder and enter insta.py or double-click on the insta.py file.
 
 👉Note:-
 
