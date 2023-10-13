@@ -17,7 +17,7 @@ driver.find_element_by_name('password').send_keys('insta@#$%') #replace with you
 time.sleep(2)
 driver.find_element_by_xpath("//button[@type='submit']").click()
 time.sleep(6)
-driver.get('https://www.instagram.com/p/CwMfpUrNzrY/') #Change the URL of the Instagram comments you like..
+driver.get('https://www.instagram.com/p/CyEH1pGrB-k/') #Change the URL of the Instagram comments you like..
 time.sleep(5)
 
 while True:
