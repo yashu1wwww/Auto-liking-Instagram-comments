@@ -17,20 +17,42 @@ driver.find_element_by_name('password').send_keys('insta@#$%') #replace with you
 time.sleep(2)
 driver.find_element_by_xpath("//button[@type='submit']").click()
 time.sleep(6)
-driver.get('https://www.instagram.com/p/CyEH1pGrB-k/') #Change the URL of the Instagram comments you like..
-time.sleep(5)
+driver.get('https://www.instagram.com/p/CwMfpUrNzrY/') #Change the URL of the Instagram comments you like..
 
-while True:
-    try:
-        like_buttons = driver.find_elements_by_xpath("//span[@aria-label='Like']") #it will like the comments in the instagram post..
-        like_buttons.click()
-        
-        time.sleep(3)  
+#it will like from 1st cmt to 10th cmt..
 
-    except Exception as e:
-        print("An error occurred:", e)
-        break  
+wait = WebDriverWait(driver, 10)
+element = wait.until(EC.presence_of_element_located((By.XPATH, '/html/body/div[2]/div/div/div[2]/div/div/div/div[1]/div[1]/div[2]/section/main/div/div[1]/div/div[2]/div/div[2]/div/div/div[1]/div/div[2]/div[2]/span/div/div/div/div'))) 
+element.click()                                              
 
+element = wait.until(EC.presence_of_element_located((By.XPATH, '/html/body/div[2]/div/div/div[2]/div/div/div/div[1]/div[1]/div[2]/section/main/div/div[1]/div/div[2]/div/div[2]/div/div/div[2]/div/div[2]/div[2]/span/div/div/div/div'))) 
+element.click()
+
+element = wait.until(EC.presence_of_element_located((By.XPATH, '/html/body/div[2]/div/div/div[2]/div/div/div/div[1]/div[1]/div[2]/section/main/div/div[1]/div/div[2]/div/div[2]/div/div/div[3]/div/div[2]/div[2]/span/div/div/div/div')))
+element.click()
+
+element = wait.until(EC.presence_of_element_located((By.XPATH, '/html/body/div[2]/div/div/div[2]/div/div/div/div[1]/div[1]/div[2]/section/main/div/div[1]/div/div[2]/div/div[2]/div/div/div[4]/div/div[2]/div[2]/span/div/div/div/div')))
+element.click()
+
+element = wait.until(EC.presence_of_element_located((By.XPATH, '/html/body/div[2]/div/div/div[2]/div/div/div/div[1]/div[1]/div[2]/section/main/div/div[1]/div/div[2]/div/div[2]/div/div/div[5]/div/div[2]/div[2]/span/div/div/div/div')))
+element.click()
+
+element = wait.until(EC.presence_of_element_located((By.XPATH, '/html/body/div[2]/div/div/div[2]/div/div/div/div[1]/div[1]/div[2]/section/main/div/div[1]/div/div[2]/div/div[2]/div/div/div[6]/div/div[2]/div[2]/span/div/div/div/div')))
+element.click()
+
+element = wait.until(EC.presence_of_element_located((By.XPATH, '/html/body/div[2]/div/div/div[2]/div/div/div/div[1]/div[1]/div[2]/section/main/div/div[1]/div/div[2]/div/div[2]/div/div/div[7]/div/div[2]/div[2]/span/div/div/div/div')))
+element.click()
+
+element = wait.until(EC.presence_of_element_located((By.XPATH, '/html/body/div[2]/div/div/div[2]/div/div/div/div[1]/div[1]/div[2]/section/main/div/div[1]/div/div[2]/div/div[2]/div/div/div[8]/div/div[2]/div[2]/span/div/div/div/div')))
+element.click()
+
+element = wait.until(EC.presence_of_element_located((By.XPATH, '/html/body/div[2]/div/div/div[2]/div/div/div/div[1]/div[1]/div[2]/section/main/div/div[1]/div/div[2]/div/div[2]/div/div/div[9]/div/div[2]/div[2]/span/div/div/div/div')))
+element.click()
+
+element = wait.until(EC.presence_of_element_located((By.XPATH, '/html/body/div[2]/div/div/div[2]/div/div/div/div[1]/div[1]/div[2]/section/main/div/div[1]/div/div[2]/div/div[2]/div/div/div[10]/div/div[2]/div[2]/span/div/div/div/div'))) 
+element.click()
+
+driver.close()
 
 
 
