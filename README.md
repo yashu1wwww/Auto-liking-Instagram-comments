@@ -7,10 +7,6 @@ Auto liking Instagram comments using selenium with python
 
 ## Note: Use accounts that do not have two-factor authentication.
 
-👉 Instagram Comments Auto Likes
-
-https://youtu.be/EzCtvFsf7Mk?feature=shared
-
 Download the latest version of Chrome Driver from https://chromedriver.chromium.org/ and extract the file. Place it in the designated folder. Open the command prompt in that particular folder and enter insta.py or double-click on the insta.py file.
 
 👉Note:-
