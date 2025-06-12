@@ -1,59 +1,66 @@
 from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.support.ui import WebDriverWait
-from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.support import expected_conditions as EC
 import time
-from selenium.webdriver import ActionChains
-import random
 
+# Start Chrome
 driver = webdriver.Chrome()
 driver.get("https://www.instagram.com")
 time.sleep(3)
-driver.find_element_by_name('username').send_keys('insta@123') #replace with your insta username
-time.sleep(1)
-driver.find_element_by_name('password').send_keys('insta@#$%') #replace with your insta password
-time.sleep(2)
-driver.find_element_by_xpath("//button[@type='submit']").click()
-time.sleep(6)
-driver.get('https://www.instagram.com/p/CwMfpUrNzrY/') #Change the URL of the Instagram comments you like..
 
-#it will like from 1st cmt to 10th cmt..
+# Login
+driver.find_element(By.NAME, 'username').send_keys('insta@123')  # Replace with your username
+driver.find_element(By.NAME, 'password').send_keys('insta@#$%')  # Replace with your password
+driver.find_element(By.XPATH, "//button[@type='submit']").click()
+time.sleep(7)
 
-wait = WebDriverWait(driver, 10)
-element = wait.until(EC.presence_of_element_located((By.XPATH, '/html/body/div[2]/div/div/div[2]/div/div/div/div[1]/div[1]/div[2]/section/main/div/div[1]/div/div[2]/div/div[2]/div/div/div[1]/div/div[2]/div[2]/span/div/div/div/div'))) 
-element.click()                                              
+# Navigate to post
+driver.get('https://www.instagram.com/p/CwMfpUrNzrY/')
+time.sleep(5)
 
-element = wait.until(EC.presence_of_element_located((By.XPATH, '/html/body/div[2]/div/div/div[2]/div/div/div/div[1]/div[1]/div[2]/section/main/div/div[1]/div/div[2]/div/div[2]/div/div/div[2]/div/div[2]/div[2]/span/div/div/div/div'))) 
-element.click()
+# Click "View all comments"
+try:
+    view_comments = WebDriverWait(driver, 10).until(
+        EC.element_to_be_clickable((By.XPATH, "//span[contains(text(),'View all comments')]"))
+    )
+    view_comments.click()
+    time.sleep(2)
+except:
+    print("All comments already visible or button not found")
 
-element = wait.until(EC.presence_of_element_located((By.XPATH, '/html/body/div[2]/div/div/div[2]/div/div/div/div[1]/div[1]/div[2]/section/main/div/div[1]/div/div[2]/div/div[2]/div/div/div[3]/div/div[2]/div[2]/span/div/div/div/div')))
-element.click()
+# Scroll and like comments
+def like_visible_comments():
+    liked = 0
+    comments = driver.find_elements(By.XPATH, "//ul/ul//li//button//*[name()='svg'][@aria-label='Like']/ancestor::button")
+    for btn in comments:
+        try:
+            driver.execute_script("arguments[0].scrollIntoView(true);", btn)
+            btn.click()
+            liked += 1
+            print(f"❤️ Liked comment #{liked}")
+            time.sleep(1)
+        except Exception as e:
+            print("⚠️ Failed to like:", e)
+    return liked
 
-element = wait.until(EC.presence_of_element_located((By.XPATH, '/html/body/div[2]/div/div/div[2]/div/div/div/div[1]/div[1]/div[2]/section/main/div/div[1]/div/div[2]/div/div[2]/div/div/div[4]/div/div[2]/div[2]/span/div/div/div/div')))
-element.click()
+def scroll_comments():
+    scroll_area = driver.find_element(By.XPATH, "//ul[contains(@class, 'Mr508')]//ancestor::div[contains(@role,'dialog')]")
+    driver.execute_script("arguments[0].scrollTop = arguments[0].scrollHeight", scroll_area)
+    time.sleep(2)
 
-element = wait.until(EC.presence_of_element_located((By.XPATH, '/html/body/div[2]/div/div/div[2]/div/div/div/div[1]/div[1]/div[2]/section/main/div/div[1]/div/div[2]/div/div[2]/div/div/div[5]/div/div[2]/div[2]/span/div/div/div/div')))
-element.click()
+print("🚀 Starting auto-like on comments...")
+previous_count = -1
 
-element = wait.until(EC.presence_of_element_located((By.XPATH, '/html/body/div[2]/div/div/div[2]/div/div/div/div[1]/div[1]/div[2]/section/main/div/div[1]/div/div[2]/div/div[2]/div/div/div[6]/div/div[2]/div[2]/span/div/div/div/div')))
-element.click()
+while True:
+    current_count = like_visible_comments()
+    if current_count == previous_count:
+        print("✅ No new comments found. Done.")
+        break
+    previous_count = current_count
+    scroll_comments()
 
-element = wait.until(EC.presence_of_element_located((By.XPATH, '/html/body/div[2]/div/div/div[2]/div/div/div/div[1]/div[1]/div[2]/section/main/div/div[1]/div/div[2]/div/div[2]/div/div/div[7]/div/div[2]/div[2]/span/div/div/div/div')))
-element.click()
-
-element = wait.until(EC.presence_of_element_located((By.XPATH, '/html/body/div[2]/div/div/div[2]/div/div/div/div[1]/div[1]/div[2]/section/main/div/div[1]/div/div[2]/div/div[2]/div/div/div[8]/div/div[2]/div[2]/span/div/div/div/div')))
-element.click()
-
-element = wait.until(EC.presence_of_element_located((By.XPATH, '/html/body/div[2]/div/div/div[2]/div/div/div/div[1]/div[1]/div[2]/section/main/div/div[1]/div/div[2]/div/div[2]/div/div/div[9]/div/div[2]/div[2]/span/div/div/div/div')))
-element.click()
-
-element = wait.until(EC.presence_of_element_located((By.XPATH, '/html/body/div[2]/div/div/div[2]/div/div/div/div[1]/div[1]/div[2]/section/main/div/div[1]/div/div[2]/div/div[2]/div/div/div[10]/div/div[2]/div[2]/span/div/div/div/div'))) 
-element.click()
-
+# Done
 driver.close()
-
-
-
-
